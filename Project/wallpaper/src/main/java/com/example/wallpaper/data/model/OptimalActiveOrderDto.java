@@ -1,7 +1,5 @@
 package com.example.wallpaper.data.model;
 
-import com.example.wallpaper.domain.entity.StatusOrder;
-
 import java.util.Date;
 
 public class OptimalActiveOrderDto {
@@ -122,5 +120,24 @@ public class OptimalActiveOrderDto {
 
     public void setWorkExperience(float workExperience) {
         this.workExperience = workExperience;
+    }
+
+    @Override
+    public String toString() {
+        return "OptimalActiveOrderDto{" +
+                "id=" + id +
+                ", cost=" + cost +
+                ", mark=" + mark +
+                ", orderId=" + orderId +
+                ", endDate=" + endDate +
+                ", duration=" + duration +
+                ", percent=" + percent +
+                ", startDate=" + startDate +
+                ", developerId=" + developerId +
+                ", description='" + description + '\'' +
+                ", status=" + status +
+                ", developerDate=" + developerDate +
+                ", workExperience=" + workExperience +
+                '}';
     }
 }

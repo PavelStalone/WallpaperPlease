@@ -23,7 +23,10 @@ public class OptimalActiveOrderSystemImpl implements OptimalActiveOrderSystem {
             throw new IllegalArgumentException("active orders must not be empty");
 
         int minCost = activeOrders.stream().min(Comparator.comparing(OptimalActiveOrderDto::getCost)).orElseThrow().getCost();
-        Long minDuration = activeOrders.stream().min(Comparator.comparing(OptimalActiveOrderDto::getDuration)).orElseThrow().getDuration();
+        long minDuration = activeOrders.stream()
+                .filter(activeOrder -> activeOrder.getDuration() != null)
+                .mapToLong(OptimalActiveOrderDto::getDuration)
+                .min().orElse(1L);
         float maxWorkExperience = activeOrders.stream().max(Comparator.comparing(OptimalActiveOrderDto::getWorkExperience)).orElseThrow().getWorkExperience();
 
         return activeOrders.stream().peek(activeOrder -> {
