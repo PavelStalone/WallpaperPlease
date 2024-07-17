@@ -1,5 +1,6 @@
 package com.example.wallpaper.network.controller;
 
+import com.example.wallpaper.common.log.Log;
 import com.example.wallpaper.core.service.contract.ChanceTakingOrderService;
 import com.example.wallpaper.core.service.contract.OptimalActiveOrderService;
 import com.example.wallpaper.core.service.contract.OptimalCostService;
@@ -31,16 +32,19 @@ public class OrderController {
 
     @PostMapping("/order/chanceTaking")
     float findChanceTakingOrder(@RequestBody OrderDto order) {
+        Log.d("FindChanceTakingOrder called. Order = %s", order.toString());
         return chanceTakingOrderService.findChanceTakingOrder(order);
     }
 
     @PostMapping("/order/recommendedPrice")
     int findRecommendedPrice(@RequestBody OrderDto order) {
+        Log.d("FindRecommendedPrice called. Order = %s", order.toString());
         return optimalCostService.findOptimalCostForOrder(order);
     }
 
     @PostMapping("/order/optimalContracts")
     Iterable<OptimalActiveOrderDto> findOptimalActiveOrders(@RequestBody OrderDto order, @RequestParam int limit) {
+        Log.d("FindOptimalActiveOrders called. Order = %s, limit = %d", order.toString(), limit);
         return optimalActiveOrderService.findOptimalActiveOrders(order, limit);
     }
 }

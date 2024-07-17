@@ -26,6 +26,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Set<OrderDto> getAll() {
+        Log.d("GetAll called.");
         TypeMap<Order, OrderDto> mapper = Mapper.createTypeMap(Order.class, OrderDto.class);
         return orderRepository.getAllOrders().stream()
                 .map(mapper::map)
